@@ -20,11 +20,15 @@ PhoneBook::~PhoneBook(void)
 void	PhoneBook::add()
 {
 	std::cout << "PhoneBook->add() called." << std::endl;
-	this->list[this->oldest].update();
-	this->oldest = (this->oldest + 1) % 8;
-	if (this->count < 8)
-		this->count++;
-	std::cout << "New contact added." << std::endl;
+	if (this->list[this->oldest].update())
+	{
+		this->oldest = (this->oldest + 1) % 8;
+		if (this->count < 8)
+			this->count++;
+		std::cout << "Successfully added new contact." << std::endl;
+		return ;
+	}
+	std::cerr << "Failed to add new contact." << std::endl;
 	return ;
 }
 
@@ -34,11 +38,20 @@ void	PhoneBook::search()
 	int			idx;
 
 	std::cout << "PhoneBook->search() called." << std::endl;
+	if (this->count == 0)
+	{
+		std::cout << "No contacts registered. Use `ADD` to add new contact." << std::endl;
+		return ;
+	}
 	this->show_list();
 	while (true)
 	{
 		std::cout << "Enter index to show: ";
-		std::getline(std::cin, buff);
+		if (!std::getline(std::cin, buff))
+		{
+			std::cerr << "Failed to read index." << std::endl;
+			return ;
+		};
 		std::stringstream	ss(buff);
 		ss >> idx;
 		if (ss.fail() || idx < 0 || idx >= this->count)

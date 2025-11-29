@@ -10,11 +10,12 @@ private:
 	std::string	nickname;
 	std::string	phone_number;
 	std::string	darkest_secret;
+	bool		update_attr(std::string attr_name, std::string *attr);
 
 public:
 	Contact(void);
 	~Contact(void);
-	void	update(void);
+	bool	update(void);
 	void	show_summary();
 	void	show_detail();
 

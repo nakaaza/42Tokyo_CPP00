@@ -14,26 +14,33 @@ Contact::~Contact(void)
 	return ;
 }
 
-void	Contact::update(void)
+bool	Contact::update(void)
+{
+	if (this->update_attr("first name", &this->first_name)
+		&& this->update_attr("last name", &this->last_name)
+		&& this->update_attr("nickname", &this->nickname)
+		&& this->update_attr("phone number", &this->phone_number)
+		&& this->update_attr("darkest secret", &this->darkest_secret))
+		return (true);
+	return (false);
+}
+
+bool	Contact::update_attr(std::string attr_name, std::string *attr)
 {
 	std::string	buff;
 
-	std::cout << "Enter first name: ";
-	std::getline(std::cin, buff);
-	this->first_name = buff;
-	std::cout << "Enter last name: ";
-	std::getline(std::cin, buff);
-	this->last_name = buff;
-	std::cout << "Enter nickname: ";
-	std::getline(std::cin, buff);
-	this->nickname = buff;
-	std::cout << "Enter phone number: ";
-	std::getline(std::cin, buff);
-	this->phone_number = buff;
-	std::cout << "Enter darkest secret: ";
-	std::getline(std::cin, buff);
-	this->darkest_secret = buff;
-	return ;
+	std::cout << "Enter " << attr_name << ": ";
+	if (!std::getline(std::cin, buff))
+		return (false);
+	while (buff.length() == 0)
+	{
+		std::cerr << "Invalid input: " << attr_name << " can't be empty. Try again." << std::endl;
+		std::cout << "Enter " << attr_name << ": ";
+		if (!std::getline(std::cin, buff))
+			return (false);
+	}
+	*attr = buff;
+	return (true);
 }
 
 void	Contact::show_summary()
