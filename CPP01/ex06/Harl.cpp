@@ -7,21 +7,30 @@ Harl::~Harl(void) {}
 void	Harl::complain(std::string level)
 {
 	std::string	levels[4] = { "DEBUG", "INFO", "WARNING", "ERROR" };
+	int			level_idx = -1;
 
-	switch (std::find(levels, levels + 4, level) - levels)
+	while (++level_idx < 4)
+	{
+		if (levels[level_idx] == level)
+			break;
+	}
+	switch (level_idx)
 	{
 		case 0:
 			std::cout << "[ DEBUG ]" << std::endl;
 			Harl::debug();
 			std::cout << std::endl;
+			// FALLTHROUGH
 		case 1:
 			std::cout << "[ INFO ]" << std::endl;
 			Harl::info();
 			std::cout << std::endl;
+			// FALLTHROUGH
 		case 2:
 			std::cout << "[ WARNING ]" << std::endl;
 			Harl::warning();
 			std::cout << std::endl;
+			// FALLTHROUGH
 		case 3:
 			std::cout << "[ ERROR ]" << std::endl;
 			Harl::error();
