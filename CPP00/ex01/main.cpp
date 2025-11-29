@@ -9,7 +9,7 @@ int	main()
 	
 	std::cout << "=== WELCOME TO GOOD-OLD PHONEBOOK! ===" << std::endl;
 	std::cout << "> ";
-	std::cin >> buff;
+	std::getline(std::cin, buff);
 	while (buff != "EXIT")
 	{
 		if (buff == "ADD")
@@ -17,7 +17,7 @@ int	main()
 		else if (buff == "SEARCH")
 			phonebook.search();
 		std::cout << "> ";
-		std::cin >> buff;
+		std::getline(std::cin, buff);
 	}
 	std::cout << "Your nice PHONEBOOK lost forever..." << std::endl;
 	std::cout << "Bye-bye!" << std::endl;

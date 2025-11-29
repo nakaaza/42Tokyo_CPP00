@@ -19,19 +19,19 @@ void	Contact::update(void)
 	std::string	buff;
 
 	std::cout << "Enter first name: ";
-	std::cin >> buff;
+	std::getline(std::cin, buff);
 	this->first_name = buff;
 	std::cout << "Enter last name: ";
-	std::cin >> buff;
+	std::getline(std::cin, buff);
 	this->last_name = buff;
 	std::cout << "Enter nickname: ";
-	std::cin >> buff;
+	std::getline(std::cin, buff);
 	this->nickname = buff;
 	std::cout << "Enter phone number: ";
-	std::cin >> buff;
+	std::getline(std::cin, buff);
 	this->phone_number = buff;
 	std::cout << "Enter darkest secret: ";
-	std::cin >> buff;
+	std::getline(std::cin, buff);
 	this->darkest_secret = buff;
 	return ;
 }

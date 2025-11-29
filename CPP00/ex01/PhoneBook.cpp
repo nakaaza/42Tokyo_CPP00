@@ -38,7 +38,7 @@ void	PhoneBook::search()
 	while (true)
 	{
 		std::cout << "Enter index to show: ";
-		std::cin >> buff;
+		std::getline(std::cin, buff);
 		std::stringstream	ss(buff);
 		ss >> idx;
 		if (ss.fail() || idx < 0 || idx >= this->count)
