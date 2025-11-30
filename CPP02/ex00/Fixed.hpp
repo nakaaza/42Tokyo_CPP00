@@ -1,10 +1,12 @@
 #ifndef FIXED_HPP
 # define FIXED_HPP
 
+# define FRAC_BITS 8;
+
 class Fixed {
 
 private:
-	const static int	bits;
+	const static int	frac_bits;
 	int					val;
 
 public:
@@ -13,7 +15,7 @@ public:
 	Fixed &operator=(const Fixed &rhs);
 	~Fixed();
 
-	int		getRawBits(void);
+	int		getRawBits(void) const;
 	void	setRawBits(int const raw);
 
 };
